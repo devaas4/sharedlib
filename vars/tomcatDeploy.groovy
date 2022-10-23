@@ -1,6 +1,6 @@
 
-def call (tomcatIp,warName) {
-      sshagent(['Tomcat_server']) {
+def call (tomcatIp,warName,credId) {
+	sshagent(["${credId}"]) {
              //copy builded/packaged war file to tomcat server
 				sh "scp -o StrictHostKeyChecking=no target/*.war ec2-user@${tomcatIp}:/opt/tomcat8/webapps/${warName}.war"
 				//stop tomcat server
